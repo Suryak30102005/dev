@@ -1,0 +1,16 @@
+services:
+  - type: worker
+    name: hackathon-notifier
+    runtime: python
+    envVars:
+      - key: SUPABASE_URL
+        fromDotEnv: true
+      - key: SUPABASE_KEY
+        fromDotEnv: true
+      - key: TELEGRAM_BOT_TOKEN
+        fromDotEnv: true
+      - key: TELEGRAM_CHAT_ID
+        fromDotEnv: true
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    schedule: "*/10 * * * *"  # every 10 minutes
